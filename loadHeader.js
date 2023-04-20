@@ -15,13 +15,12 @@ function setDataPathAttributes() {
 }
 
 function updateHeaderLinks() {
-  var pathPrefix = window.location.pathname.endsWith("/") && window.location.pathname !== "/" ? "../" : "";
   var repoName = getRepositoryName();
   var headerLinks = document.querySelectorAll("[data-path]");
 
   headerLinks.forEach(function (link) {
     var relativePath = link.getAttribute("data-path");
-    link.href = "/" + repoName + "/" + pathPrefix  + relativePath;
+    link.href = "/" + repoName + "/" + relativePath;
     console.log("Updating header link to:", link.href); 
   });
 }
