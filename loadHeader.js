@@ -8,7 +8,7 @@ function setDataPathAttributes() {
 }
 
 function updateHeaderLinks() {
-  var pathPrefix = window.location.pathname.includes("/") && window.location.pathname !== "/" ? "../" : "";
+  var pathPrefix = window.location.pathname.endsWith("/") && window.location.pathname !== "/" ? "../" : "";
   var headerLinks = document.querySelectorAll("[data-path]");
 
   headerLinks.forEach(function (link) {
@@ -20,10 +20,9 @@ function updateHeaderLinks() {
 document.addEventListener("DOMContentLoaded", function () {
   var headerPlaceholder = document.getElementById("header-placeholder");
 
-  var pathPrefix = window.location.pathname.includes("/") && window.location.pathname !== "/" ? "../" : "";
+  var pathPrefix = window.location.pathname.endsWith("/") && window.location.pathname !== "/" ? "../" : "";
 
-  //fetch(pathPrefix + "header.html")
-  fetch("header.html")
+  fetch(pathPrefix + "header.html")
     .then((response) => response.text())
     .then((html) => {
       headerPlaceholder.innerHTML = html;
