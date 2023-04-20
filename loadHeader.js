@@ -22,7 +22,8 @@ document.addEventListener("DOMContentLoaded", function () {
 
   var pathPrefix = window.location.pathname.includes("/") && window.location.pathname !== "/" ? "../" : "";
 
-  fetch(pathPrefix + "header.html")
+  //fetch(pathPrefix + "header.html")
+  fetch("header.html")
     .then((response) => response.text())
     .then((html) => {
       headerPlaceholder.innerHTML = html;
