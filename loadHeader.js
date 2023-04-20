@@ -7,7 +7,7 @@ function getRepositoryName() {
 }
 
 function setDataPathAttributes() {
-  var headerLinks = document.querySelectorAll("nav a");
+  var headerLinks = document.querySelectorAll("nav a, #home-link");
   headerLinks.forEach(function (link) {
     var href = link.getAttribute("href");
     link.setAttribute("data-path", href);
