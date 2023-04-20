@@ -1,8 +1,9 @@
 // loadHeader.js
 
 function getRepositoryName() {
-  var pathArray = window.location.pathname.split("/");
-  return pathArray[1];
+  var url = window.location.href;
+  var repoName = url.split('/')[3];
+  return repoName;
 }
 
 function setDataPathAttributes() {
@@ -28,7 +29,8 @@ document.addEventListener("DOMContentLoaded", function () {
   var headerPlaceholder = document.getElementById("header-placeholder");
 
   var pathPrefix = window.location.pathname.endsWith("/") && window.location.pathname !== "/" ? "../" : "";
-  var headerPath = pathPrefix + "header.html";
+  var repoName = getRepositoryName();
+  var headerPath = "/" + repoName + "/" + pathPrefix + "header.html";
 
   console.log("Fetching header from:", headerPath); // Add this line
 
