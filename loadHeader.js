@@ -1,16 +1,36 @@
 // loadHeader.js
+function setDataPathAttributes() {
+  var headerLinks = document.querySelectorAll("nav a");
+  headerLinks.forEach(function (link) {
+    var href = link.getAttribute("href");
+    link.setAttribute("data-path", href);
+  });
+}
+
+function updateHeaderLinks() {
+  var pathPrefix = window.location.pathname.includes("/") && window.location.pathname !== "/" ? "../" : "";
+  var headerLinks = document.querySelectorAll("[data-path]");
+
+  headerLinks.forEach(function (link) {
+    var relativePath = link.getAttribute("data-path");
+    link.href = pathPrefix + relativePath;
+  });
+}
+
 document.addEventListener("DOMContentLoaded", function () {
   var headerPlaceholder = document.getElementById("header-placeholder");
 
-  // Determine the relative path to header.html based on the current page's location
   var pathPrefix = window.location.pathname.includes("/") && window.location.pathname !== "/" ? "../" : "";
 
   fetch(pathPrefix + "header.html")
     .then((response) => response.text())
     .then((html) => {
       headerPlaceholder.innerHTML = html;
+      setDataPathAttributes();
+      updateHeaderLinks();
     })
     .catch((err) => {
       console.warn("Something went wrong with loading the header:", err);
+      headerPlaceholder.innerHTML = '<div class="error-message">Error loading header: ' + err + '</div>';
     });
 });
