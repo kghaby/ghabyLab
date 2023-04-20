@@ -28,7 +28,12 @@ function updateHeaderLinks() {
 document.addEventListener("DOMContentLoaded", function () {
   var headerPlaceholder = document.getElementById("header-placeholder");
 
-  fetch("/lab/header.html")
+  var repoName = getRepositoryName();
+  var headerPath = "/" + repoName + "/" +"header.html";
+
+  console.log("Fetching header from:", headerPath); // Add this line
+
+  fetch(headerPath)
     .then((response) => response.text())
     .then((html) => {
       headerPlaceholder.innerHTML = html;
