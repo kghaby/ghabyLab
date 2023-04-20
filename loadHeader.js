@@ -21,7 +21,7 @@ function updateHeaderLinks() {
 
   headerLinks.forEach(function (link) {
     var relativePath = link.getAttribute("data-path");
-    link.href = "/" + repoName + (pathPrefix ? "/" + pathPrefix : "") + relativePath;
+    link.href = "/" + repoName + "/" + pathPrefix  + relativePath;
   });
 }
 
