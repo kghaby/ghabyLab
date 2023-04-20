@@ -1,4 +1,10 @@
 // loadHeader.js
+
+function getRepositoryName() {
+  var pathArray = window.location.pathname.split("/");
+  return pathArray[1];
+}
+
 function setDataPathAttributes() {
   var headerLinks = document.querySelectorAll("nav a");
   headerLinks.forEach(function (link) {
@@ -9,11 +15,12 @@ function setDataPathAttributes() {
 
 function updateHeaderLinks() {
   var pathPrefix = window.location.pathname.endsWith("/") && window.location.pathname !== "/" ? "../" : "";
+  var repoName = getRepositoryName();
   var headerLinks = document.querySelectorAll("[data-path]");
 
   headerLinks.forEach(function (link) {
     var relativePath = link.getAttribute("data-path");
-    link.href = pathPrefix + relativePath;
+    link.href = "/" + repoName + (pathPrefix ? "/" + pathPrefix : "") + relativePath;
   });
 }
 
