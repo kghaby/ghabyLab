@@ -22,6 +22,7 @@ function updateHeaderLinks() {
   headerLinks.forEach(function (link) {
     var relativePath = link.getAttribute("data-path");
     link.href = "/" + repoName + "/" + pathPrefix  + relativePath;
+    console.log("Updating header link to:", link.href); 
   });
 }
 
@@ -31,7 +32,7 @@ document.addEventListener("DOMContentLoaded", function () {
   var repoName = getRepositoryName();
   var headerPath = "/" + repoName + "/" +"header.html";
 
-  console.log("Fetching header from:", headerPath); // Add this line
+  console.log("Fetching header from:", headerPath); 
 
   fetch(headerPath)
     .then((response) => response.text())
