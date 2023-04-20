@@ -28,8 +28,11 @@ document.addEventListener("DOMContentLoaded", function () {
   var headerPlaceholder = document.getElementById("header-placeholder");
 
   var pathPrefix = window.location.pathname.endsWith("/") && window.location.pathname !== "/" ? "../" : "";
+  var headerPath = pathPrefix + "header.html";
 
-  fetch(pathPrefix + "header.html")
+  console.log("Fetching header from:", headerPath); // Add this line
+
+  fetch(headerPath)
     .then((response) => response.text())
     .then((html) => {
       headerPlaceholder.innerHTML = html;
